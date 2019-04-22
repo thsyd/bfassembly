@@ -18,9 +18,9 @@ Content includes:
 ```
 filtlong --min_length 100 --keep_percent 90 --target_bases 500000000 input.fastq.gz | gzip > output.fastq.gz
 ```
+
 ### Canu correction
-
-
+```
 canuprefix=$(basename output.fastq.gz .fastq.gz)
 canu -correct \
 	-p $canuprefix \
@@ -28,9 +28,21 @@ canu -correct \
 	genomeSize=5.2m \
 	-nanopore-raw output.fastq.gz \
 	useGrid=false
-  
-### Unicycler hybrid assembly
+```
 
+### Unicycler hybrid assembly
+Dependencies: jre/1.7.0 pilon/1.22 racon/1.3.1 spades/3.13.0 samtools/1.9
+```
+unicycler \
+--short1 <path to short reads 1> \
+--short2 <path to short reads 1> \
+--long <path to long reads> \
+--out <output path> \
+--threads= <number of threads> \
+--verbosity=2 \
+--min_fasta_length=100 \
+--mode normal
+```
 
 
 ```
