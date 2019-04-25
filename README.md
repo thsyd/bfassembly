@@ -36,18 +36,19 @@ module load seqtk/1.0-r82-dirty pigz/2.3.4
 
 #set estimated genome length
 GLEN=5.3
-
+#set target max depth
+DEPTH=100
 BASES=$(zcat val_1.fq.gz | seqtk seq -A | grep -v "^>" | tr -dc "ACTGNactgn" | wc -m)
 BASES=$(expr $BASES \* 2)	#total bases is double R1. need to escape the asterix
-echo Bases: $BASES
-echo GLEN: $GLEN
+
 ORI_DEPTH=$(expr $BASES / $GLEN) #calculate original (crude) depth
-echo ORI_DEPTH: $ORI_DEPTH
-echo DEPTH: $DEPTH
-calc() { awk "BEGIN{print $*}"; } #need this short awk funktion as bash expr only calculates integer
+
+#create function calc(). Need this short awk funktion as bash expr only calculates integer
+calc() { awk "BEGIN{print $*}"; } 
 FACTOR=$(calc $DEPTH / $ORI_DEPTH)
-echo Factor: $FACTOR
-if [ "$ORI_DEPTH" -gt "$DEPTH" ]; then 		#subsample
+
+#subsample if depth < ori_depth
+if [ "$ORI_DEPTH" -gt "$DEPTH" ]; then
 	seqtk sample -s100 val_1.fq.gz $FACTOR | pigz --fast -c -p $NPROCS > R1.sub.fq.gz 
 	seqtk sample -s100 val_2.fq.gz $FACTOR | pigz --fast -c -p $NPROCS > R2.sub.fq.gz
 else
