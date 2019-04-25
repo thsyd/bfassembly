@@ -15,36 +15,105 @@ Content includes:
 ### Preparing Illumina reads
 
 ### Filtlong
+Filtlong 0.2.0
 ```
 filtlong --min_length 100 --keep_percent 90 --target_bases 500000000 input.fastq.gz | gzip > output.fastq.gz
 ```
 
 ### Canu correction
+Canu 1.8
+run with standard options or
+corOutCoverage=999 or
+corMinCoverage=0
 ```
 canuprefix=$(basename output.fastq.gz .fastq.gz)
 canu -correct \
 	-p $canuprefix \
 	-d <outdir> \
-	genomeSize=5.2m \
+	genomeSize=5.4m \
 	-nanopore-raw output.fastq.gz \
 	useGrid=false
 ```
 
 ### Unicycler hybrid assembly
+Unicycler 0.4.7
 Dependencies: jre/1.7.0 pilon/1.22 racon/1.3.1 spades/3.13.0 samtools/1.9
 ```
 unicycler \
 --short1 <path to short reads 1> \
---short2 <path to short reads 1> \
+--short2 <path to short reads 2> \
 --long <path to long reads> \
 --out <output path> \
---threads= <number of threads> \
+--threads=<number of threads> \
 --verbosity=2 \
 --min_fasta_length=100 \
 --mode normal
 ```
 
-
+### Flye ONT read assembly
+Flye 2.3.7
+```
+flye --nano-raw <long reads> \
+	--genome-size 5.3m \
+	--threads <number of threads> \
+	--out-dir <outdir>
 ```
 
+### Flye ONT read assembly with Flyepolish
+
+Flye 2.3.7 run with three iterations of Flyes internal polishing engine
+```
+flye --nano-raw <long reads> \
+	--genome-size 5.3m \
+	--threads <number of threads> \
+	--out-dir <outdir> \
+	-i 3
+```
+
+### Minimap2 - miniasm assembly
+minimap2/2.6 miniasm/0.3r179
+```
+minimap2 -x ava-ont -t $NPROCS ont_reads.fastq ont_reads.fastq | gzip -1 \
+	> output.reads.paf.gz
+miniasm -f <ONT reads> output.reads.paf.gz > output.miniasm.gfa
+
+# convert to fasta after lh3 https://www.biostars.org/p/169516/
+awk '/^S/{print">"$2"\n"$3}' output.miniasm.gfa | \
+	fold > output.miniasm.fasta
+```
+
+### Skesa assembly
+skesa/2.3.0
+```
+skesa 	--fastq <short reads 1> \
+		--fastq <short reads 2> \
+		--cores <number of cores> \
+		--memory <allocated memory> \
+		--contigs_out output.skesa.fasta
+```
+
+### SPAdes assembly
+spades/3.13.0
+```
+spades.py 	--threads <number of cores> \
+		--memory <allocated memory> \
+		-k 31,51,71 \
+		--pe1-1 <short reads 1> \
+		--pe1-2 <short reads 2> \
+		-o output.spades \
+		--careful \
+		--tmp-dir <scratch directory>
+```
+### HybridSPAdes assembly
+spades/3.13.0
+```
+spades.py 	--threads <number of cores> \
+		--memory <allocated memory> \
+		-k 31,51,71 \
+		--pe1-1 <short reads 1> \
+		--pe1-2 <short reads 2> \
+		--nanopore <nanopore reads> \
+		-o output.hybridspades \
+		--careful \
+		--tmp-dir <scratch directory>
 ```
