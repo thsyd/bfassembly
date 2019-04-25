@@ -14,6 +14,49 @@ Content includes:
 
 ### Preparing Illumina reads
 
+#### filterbytile from BBMAP package
+bbmap/36.49
+```
+filterbytile.sh in1=<short reads 1> in2=<short reads 2> out1=filtered1.fq.gz out2=filtered2.fq.gz
+```
+
+#### TrimGalore
+trim_galore/0.4.4
+```
+trim_galore --paired --quality 10 <input 1> <input 2>
+```
+
+#### Downsampling
+```
+#subsample and define inputs for unicycler
+echo ------------------------
+echo Subsample reads
+echo ------------------------
+module load seqtk/1.0-r82-dirty pigz/2.3.4
+
+#set estimated genome length
+GLEN=5.3
+
+BASES=$(zcat *val_1.fq.gz | seqtk seq -A | grep -v "^>" | tr -dc "ACTGNactgn" | wc -m)
+BASES=$(expr $BASES \* 2)	#total bases is double R1. need to escape the asterix
+echo Bases: $BASES
+echo GLEN: $GLEN
+ORI_DEPTH=$(expr $BASES / $GLEN) #calculate original (crude) depth
+echo ORI_DEPTH: $ORI_DEPTH
+echo DEPTH: $DEPTH
+calc() { awk "BEGIN{print $*}"; } #need this short awk funktion as bash expr only calculates integer
+FACTOR=$(calc $DEPTH / $ORI_DEPTH)
+echo Factor: $FACTOR
+if [ "$ORI_DEPTH" -gt "$DEPTH" ]; then 		#subsample
+	seqtk sample -s100 *val_1.fq.gz $FACTOR | pigz --fast -c -p $NPROCS > R1.sub.fq.gz 
+	seqtk sample -s100 *val_2.fq.gz $FACTOR | pigz --fast -c -p $NPROCS > R2.sub.fq.gz
+	UNI_IN_S1=$(echo R1.sub.fq.gz)
+	UNI_IN_S2=$(echo R2.sub.fq.gz)
+else
+	UNI_IN_S1=$(echo *val_1.fq.gz)
+	UNI_IN_S2=$(echo *val_2.fq.gz)
+fi
+```
 ### Preparing Nanopore reads
 
 #### Filtlong
@@ -39,7 +82,7 @@ canu -correct \
 	useGrid=false
 ```
 
-### Unicycler hybrid assembly
+#### Unicycler hybrid assembly
 Unicycler 0.4.7
 Dependencies: jre/1.7.0 pilon/1.22 racon/1.3.1 spades/3.13.0 samtools/1.9
 ```
@@ -54,7 +97,7 @@ unicycler \
 --mode normal
 ```
 
-### Flye ONT read assembly
+#### Flye ONT read assembly
 Flye 2.3.7
 ```
 flye --nano-raw <long reads> \
@@ -63,7 +106,7 @@ flye --nano-raw <long reads> \
 	--out-dir <outdir>
 ```
 
-### Flye ONT read assembly with Flyepolish
+#### Flye ONT read assembly with Flyepolish
 
 Flye 2.3.7 run with three iterations of Flyes internal polishing engine
 ```
@@ -74,7 +117,7 @@ flye --nano-raw <long reads> \
 	-i 3
 ```
 
-### Minimap2 - miniasm assembly
+#### Minimap2 - miniasm assembly
 minimap2/2.6 miniasm/0.3r179
 ```
 minimap2 -x ava-ont -t $NPROCS ont_reads.fastq ont_reads.fastq | gzip -1 \
@@ -86,7 +129,7 @@ awk '/^S/{print">"$2"\n"$3}' output.miniasm.gfa | \
 	fold > output.miniasm.fasta
 ```
 
-### Skesa assembly
+#### Skesa assembly
 skesa/2.3.0
 ```
 skesa 	--fastq <short reads 1> \
@@ -96,7 +139,7 @@ skesa 	--fastq <short reads 1> \
 		--contigs_out output.skesa.fasta
 ```
 
-### SPAdes assembly
+#### SPAdes assembly
 spades/3.13.0
 ```
 spades.py 	--threads <number of cores> \
@@ -108,7 +151,7 @@ spades.py 	--threads <number of cores> \
 		--careful \
 		--tmp-dir <scratch directory>
 ```
-### HybridSPAdes assembly
+#### HybridSPAdes assembly
 spades/3.13.0
 ```
 spades.py 	--threads <number of cores> \
