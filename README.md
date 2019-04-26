@@ -54,7 +54,7 @@ Raw reads were demultiplexed with [Deepbinner](https://github.com/rrwick/Deepbin
 [PoreChop](https://github.com/rrwick/Porechop) was then used to trim adapters and barcodes from reads.
 
 Running PoreChop
-´´´
+```
 porechop_out="$b"_trimmed.fastq.gz
 	porechop_log="$b"_porechop.log
 	porechop 	--threads $NPROCS \
@@ -62,7 +62,7 @@ porechop_out="$b"_trimmed.fastq.gz
 				--discard_middle \
 				-i demultiplexed_fastqs/"$b"_untrimmed.fastq.gz \
 					2> "$porechop_log" | pigz -p $NPROCS > "$porechop_out"
-´´´
+```
 #### Concatenating fastq files from two runs
 ```
 inp1=input1.fastq.gz
@@ -103,8 +103,8 @@ canu \
 	-nanopore-raw <path to nanopore reads>
  	maxMemory=<set memory> \
 	maxThreads=<set threads>
-
-#### [Unicycler]https://github.com/rrwick/Unicycler hybrid assembly
+```
+####[Unicycler](https://github.com/rrwick/Unicycler) hybrid assembly
 Unicycler 0.4.7
 Dependencies: jre/1.7.0 pilon/1.22 racon/1.3.1 spades/3.13.0 samtools/1.9
 ```
