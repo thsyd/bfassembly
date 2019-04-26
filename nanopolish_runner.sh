@@ -4,12 +4,6 @@
 #this is written to run on a HPC that manages software through Environment Modules (http://modules.sourceforge.net/).
 #Other users may have to comment out the lines loading and unloading modules.
 
-set -x # echo commands and output, expands variables. 
-#shopt -s expand_aliases #keep aliases from calling environment
-
-logfile="./nanopolish_runner_errorlog.txt" # save sterr to logfile.
-exec > $logfile 2>&1
-
 if [ "$1" == "-h" ] ; then
     echo "Usage: run_nanopolish <directory_of_fast5s> <path/to/sequencing_summary.txt> <reads_from_albacore.fastq> <draft_assembly.fasta> <output_name.fasta>"
     exit 0
