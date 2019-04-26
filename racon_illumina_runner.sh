@@ -1,7 +1,10 @@
 #!/bin/bash
 # racon with illumina reads
 #after racon_runner https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/blob/master/racon_runner
+#this is written to run on a HPC that manages software through Environment Modules (http://modules.sourceforge.net/).
+#Other users may have to comment out the lines loading and unloading modules.
 
+#Check if arguments have been stated.
 if [ "$1" == "-h" ] ; then
     echo "Usage: racon_illumina_runner <assembly.fasta> <illuminareads1.fastq.gz> <reads2.fastq.gz> <out.fasta>"
     exit 0
@@ -45,7 +48,7 @@ sp="$PBS_JOBID"
 rm $sp/ill.temp.fastq
 zcat $2 $3 > $sp/ill.temp.fastq
 
-#fix reads names to R1 and R2 are not the same up to whitespace
+#fix reads names to R1 and R2 are not the same up to whitespace with prepilluminaracon.py
 python $scriptpath/prepilluminaracon.py $sp/ill.temp.fastq \
 	> $sp/ill.prep.temp.fastq
 
