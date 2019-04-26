@@ -189,25 +189,25 @@ spades.py 	--threads <number of cores> \
 
 ### Assembly polishing
 Assemblies were polished with [Nanopolish](https://nanopolish.readthedocs.io/en/latest/), [Racon](https://github.com/isovic/racon), and/or [Pilon](https://github.com/broadinstitute/pilon).
-[nanopolish_runner.sh](), [pilon_runner_nochange.sh](), [racon_runner.sh](), and [racon_illumina_runner.sh]() were heavily inspired by @nataliering 's [scripts](https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/)
+[nanopolish_runner.sh](), [pilon_runner_nochange.sh](), [racon_runner.sh](), and [racon_illumina_runner.sh]() were heavily inspired by @nataliering 's [scripts](https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/).
+
 Usage:
 Nanopolish_runner.sh
-´´´
+```
 run_nanopolish <directory_of_fast5s> <path/to/sequencing_summary.txt> <reads_from_albacore.fastq> <draft_assembly.fasta> <output_name.fasta>
-´´´
+```
 pilon_runner_nochange.sh
-´´´
+```
 pilon_runner <in.fasta> <illumina_S1> <illumina_S2> <out_prefix>
-´´´
+```
 racon_runner.sh
-´´´
+```
 racon_runner <assembly.fasta> <reads.fastq> <out.fasta>
-´´´
+```
 racon_illumina_runner.sh
-´´´
+```
 racon_illumina_runner <assembly.fasta> <illuminareads1.fastq.gz> <reads2.fastq.gz> <out.fasta>
-´´´
-[pilon_runner_nochange.sh]() inspired by @nataliering's [pilon_runner.dh]
+```
 
 ### Evaluating assemblies
 Assemblies is .fasta format were collected in the same folder, and the following scripts run in that folder.
