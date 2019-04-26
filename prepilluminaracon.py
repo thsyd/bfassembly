@@ -2,6 +2,7 @@
 #Racon treats all reads as single ends so no two reads should have the same identifier up to the first white space.
 #This script adds 1 and 2 at the end of each read in a pair.
 #from @rvaser https://github.com/isovic/racon/issues/68#issuecomment-386223150
+#Usage is python prepilluminaracon.py input.fastq output.fastq
 
 from __future__ import print_function
 import sys
