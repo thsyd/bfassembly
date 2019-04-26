@@ -240,7 +240,7 @@ for F in *.fasta; do
 	totalALE=$(head -n 1 ale/$N.output.ale.meta.txt | tr ' ' \\t | cut -f3)
 	printf "$F\t$totalALE\n" >> ale/totalALE.tsv
 done
-´´´
+```
 
 #### Average nucleotide identity was calculated using @chjp's [ANI.pl](https://github.com/chjp/ANI/blob/master/ANI.pl)
 Reference genome was RefSeq GCF_000025985.1.
@@ -299,7 +299,7 @@ for F in $allfasta; do
 done
 ```
 
-####[CheckM](https://ecogenomics.github.io/CheckM/)
+#### [CheckM](https://ecogenomics.github.io/CheckM/)
 ```
 binfolder="./"
 outputfolder=checkm_out
@@ -317,7 +317,7 @@ rm -r checkm_out/bins
 rm -r checkm_out/storage
 ```
 
-####dnadiff from [MUMmer](http://mummer.sourceforge.net/)
+#### dnadiff from [MUMmer](http://mummer.sourceforge.net/)
 
 ```
 for F in *.fasta; do
@@ -335,7 +335,7 @@ for F in *.fasta; do
 done
 ```
 
-####[Prokka](https://github.com/tseemann/prokka) annotation
+#### [Prokka](https://github.com/tseemann/prokka) annotation
 Prokka is run for all assemblies in .fasta format.
 The reference proteins of GCF_000025985.1 is used as protein database for prokka.
 Counts for CDS, gene, RNA ect is then collected into one .tsv file.
@@ -414,13 +414,13 @@ rm -r contigs_reports
 rm -r genome_stats
 ```
 
-###[ABRicate](https://github.com/tseemann/abricate) for Identification of resistance genes and IS elements
+### [ABRicate](https://github.com/tseemann/abricate) for Identification of resistance genes and IS elements
 
-###Plasmid replication 
+### Plasmid replication 
 
 ###
 
-####BLAST settings for ONT read mapping in CLC Genomics Workbench
+#### BLAST settings for ONT read mapping in CLC Genomics Workbench
 ```
 # Local BLAST of np reads to assembly
 'Filter low Complexity'
