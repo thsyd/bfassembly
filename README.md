@@ -104,7 +104,7 @@ canu \
  	maxMemory=<set memory> \
 	maxThreads=<set threads>
 ```
-####[Unicycler](https://github.com/rrwick/Unicycler) hybrid assembly
+#### [Unicycler](https://github.com/rrwick/Unicycler) hybrid assembly
 Unicycler 0.4.7
 Dependencies: jre/1.7.0 pilon/1.22 racon/1.3.1 spades/3.13.0 samtools/1.9
 ```
@@ -139,7 +139,7 @@ flye --nano-raw <long reads> \
 	-i 3
 ```
 
-####[miniasm](https://github.com/lh3/miniasm) assembly
+#### [miniasm](https://github.com/lh3/miniasm) assembly
 minimap2/2.6 miniasm/0.3r179
 ```
 minimap2 -x ava-ont -t $NPROCS ont_reads.fastq ont_reads.fastq | gzip -1 \
@@ -216,7 +216,7 @@ These .tsv files could then be merged, creating the supplementary file XXX with 
 
 #### [ALE](https://github.com/sc932/ALE)
 The following runs ALE for all *fasta files in a folder, and extracts the score from the individual ALE results files and writes the scores to a seperate .tsv file.
-´´´
+```
 mkdir ale
 #create file for aggregation of results
 printf "Assembly\total_ALE_score\n" > ale/totalALE.tsv
