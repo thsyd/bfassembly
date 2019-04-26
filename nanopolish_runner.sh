@@ -1,5 +1,8 @@
 #! /bin/bash
+#Runs one round of Nanopolish
 #heavily inspired from https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/blob/master/nanopolish_runner
+#this is written to run on a HPC that manages software through Environment Modules (http://modules.sourceforge.net/).
+#Other users may have to comment out the lines loading and unloading modules.
 
 set -x # echo commands and output, expands variables. 
 #shopt -s expand_aliases #keep aliases from calling environment
@@ -33,10 +36,14 @@ module load tools anaconda3/4.4.0 nanopolish/0.10.2 \
 module list
 
 # set variables
+#if not running on a HPC which defines $PBS_NODEFILE, then for this script to work you must define the number of processes
+#by uncommenting the line below and setting the correct number of processes. A minimum of 4, else the parallel running of Nanopolish breaks.
+#PBS_NODEFILE=<number of threads/processes>
 NPROCS=`wc -l < $PBS_NODEFILE` # number of processes in environment
 
+
 #set scratchdir
-sp="/home/projects/cu_10128/scratch/$PBS_JOBID"
+sp="$PBS_JOBID"
 mkdir $sp
 echo scratchdir is "$sp"
 
@@ -51,12 +58,10 @@ echo "<output_name.fasta>: "$5""
 
 dt=`date '+%d/%m/%Y %H:%M:%S'`; echo "$dt"
 echo "Running nanopolish index"
-#index has been done on the fasta.gz files so many times. 
-#$NANOPOLISH/nanopolish index -d $1 -s "$2" "$3"
+$NANOPOLISH/nanopolish index -d $1 -s "$2" "$3"
 
 dt=`date '+%d/%m/%Y %H:%M:%S'`; echo "$dt"
 echo "Running minimap2"
-#removed -a before pipe
 minimap2 -ax map-ont -t $NPROCS $4 $3 | \
 	samtools sort -@ $NPROCS -o $sp/reads.sorted.bam -T $sp/reads.tmp
 
