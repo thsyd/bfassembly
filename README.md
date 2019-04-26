@@ -139,7 +139,7 @@ flye --nano-raw <long reads> \
 	-i 3
 ```
 
-#### [miniasm]https://github.com/lh3/miniasm assembly
+####[miniasm](https://github.com/lh3/miniasm) assembly
 minimap2/2.6 miniasm/0.3r179
 ```
 minimap2 -x ava-ont -t $NPROCS ont_reads.fastq ont_reads.fastq | gzip -1 \
@@ -188,8 +188,8 @@ spades.py 	--threads <number of cores> \
 ```
 
 ### Assembly polishing
-Assemblies were polished with [Nanopolish](https://nanopolish.readthedocs.io/en/latest/), [Racon](https://github.com/isovic/racon), and/or [Pilon](https://github.com/broadinstitute/pilon=.
-[nanopolish_runner.sh](), [pilon_runnner_nochange.sh](), [racon_runner.sh](), and [racon_illumina_runner.sh] were heavily inspired by @nataliering's [scripts](https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/)
+Assemblies were polished with [Nanopolish](https://nanopolish.readthedocs.io/en/latest/), [Racon](https://github.com/isovic/racon), and/or [Pilon](https://github.com/broadinstitute/pilon).
+[nanopolish_runner.sh](), [pilon_runner_nochange.sh](), [racon_runner.sh](), and [racon_illumina_runner.sh]() were heavily inspired by @nataliering 's [scripts](https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/)
 Usage:
 Nanopolish_runner.sh
 ´´´
