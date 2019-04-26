@@ -1,12 +1,8 @@
 #!/bin/bash
+#Pilon polishing until no changes are made or 6 rounds have been run. 
 #after https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/blob/master/pilon_runner
-# this script runs until no changes
-# make sure aliases are used (eg pilon)
-#shopt -s expand_aliases
-#alias pilon="java -jar /services/tools/pilon/1.22/pilon-1.22.jar"
-set -x
-logfile="./pilon_runner_nochange.txt" # save sterr to logfile.
-exec > $logfile 2>&1
+#this is written to run on a HPC that manages software through Environment Modules (http://modules.sourceforge.net/).
+#Other users may have to comment out the lines loading and unloading modules.
 
 if [ "$1" == "-h" ] ; then
     echo "Usage: pilon_runner <in.fasta> <illumina_S1> <illumina_S2> <out_prefix>"
@@ -30,11 +26,8 @@ echo "2: $2"
 echo "3: $3"
 echo "4: $4"
 
-# in case running in interactive mode
-NPROCS=`wc -l < $PBS_NODEFILE`
-
 #set scratchdir
-sp="/home/projects/cu_10128/scratch/$PBS_JOBID"
+sp="$PBS_JOBID"
 
 module purge
 module load tools jre/1.8.0 pilon/1.22 bwa/0.7.15 samtools/1.9
@@ -47,9 +40,6 @@ rm $base_1.pilonchanges.txt
 touch $base_1.pilonchanges.txt
 PILON_CHANG=1 
 PILON_ROUND=0 
-
-#pilon test
-#pilon
 
 # set target fasta file
 target=$1
