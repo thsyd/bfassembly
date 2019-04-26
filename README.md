@@ -3,9 +3,9 @@
 This repository supports our paper, which is currenctly available as a preprint from BioRXiv: 
 
 Content includes:
-- code and commands for calling community-built and published tools
-- links to data repositories, including raw and processed reads (fast5 and fastq) as well as genome assemblies
-- supplementary results and links to supplementary files
+- Code and commands for calling community-built and published tools
+- Links to data repositories, including raw and processed reads (fast5 and fastq) as well as genome assemblies
+- Supplementary results and links to supplementary files
 
 ## Abstract
 *Bacteroides fragilis* is an opportunistic pathogen that resides in the human gut as part of the human commensal flora. Short DNA sequencing alone is unable to resolve the structure of the genome. VSeven complete genome assemblies have been deposited to public databases to date (2019-02-2018). To add to the public databases and to explore the location of antimicrobial resistance genes in the context of the complex genomes of B. fragilis, we aimed to complete genome assembly using a hybrid assembly approach. Using the Sanger sequenced *Bacteroides fragilis* NCTC 9343(NCBI RefSeq accession GCF_000025985.1) as a comparative reference, we sequenced *B. fragilis* CCUG4856T (=NCTC9343=ATCC25285) with Illumina 150 bp PE and Oxford Nanopore (ONT) MinION Rapid barcoding kit and assembled using various assemblers and polishing tools. The best assembly was with hybrid Unicycler with FilterByTile and Cutadapt filteres Illumina reads and FiltLong filtered and Canu corrected ONT reads. This approach was then applied to six multidrug resistant isolates. Resistance genes and IS elements were identified. Plasmids where charaterised. 
@@ -14,7 +14,7 @@ Content includes:
 
 ### Preparing Illumina reads
 
-#### filterbytile from [BBMap](https://sourceforge.net/projects/bbmap/) package
+#### filterbytile from [BBMap](https://sourceforge.net/projects/bbmap/)
 bbmap/36.49
 ```
 filterbytile.sh in1=<short reads 1> in2=<short reads 2> out1=filtered1.fq.gz out2=filtered2.fq.gz
@@ -56,12 +56,12 @@ Raw reads were demultiplexed with [Deepbinner](https://github.com/rrwick/Deepbin
 Running PoreChop
 ```
 porechop_out="$b"_trimmed.fastq.gz
-	porechop_log="$b"_porechop.log
-	porechop 	--threads $NPROCS \
-				--check_reads 100 \
-				--discard_middle \
-				-i demultiplexed_fastqs/"$b"_untrimmed.fastq.gz \
-					2> "$porechop_log" | pigz -p $NPROCS > "$porechop_out"
+porechop_log="$b"_porechop.log
+porechop 	--threads $NPROCS \
+		--check_reads 100 \
+		--discard_middle \
+		-i demultiplexed_fastqs/"$b"_untrimmed.fastq.gz \
+			2> "$porechop_log" | pigz -p $NPROCS > "$porechop_out"
 ```
 #### Concatenating fastq files from two runs
 ```
