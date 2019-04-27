@@ -414,9 +414,52 @@ rm -r contigs_reports
 rm -r genome_stats
 ```
 
-### [ABRicate](https://github.com/tseemann/abricate) for Identification of resistance genes and IS elements
+### Identification of resistance genes and IS elements with [ABRicate](https://github.com/tseemann/abricate)
+ABRicate does not output the orientation of a hit in the results. To ascertain if an IS elements
+is oriented upstream and in the opposite strand of the resistance gene of interest, a small change
+was made to the ABRicate script prior to use. See ABRicate [issue 83](https://github.com/tseemann/abricate/issues/83).
+Resistance genes were identified using the Resfinder, CARD and NCBI databases that come with ABRicate.
+Gene sequences of the putative multidrug efflux pumps BexA (GenBank: AB067769.1:3564..4895) and BexB (GenBank: AY375536.1:4599..5963) were downloaded from the NCBI Nucleotide database.
+The [ISFinder](https://isfinder.biotoul.fr/howto.php) Insertion Sequence database was downloaded from [here](https://github.com/thanhleviet/ISfinder-sequences) and duplicates removed (see [this issue](https://github.com/thanhleviet/ISfinder-sequences/issues/1).
+The above databases and sequences were collated into one ABRicate database (abricate_tvs) following the guide on ABRicates [github site](https://github.com/tseemann/abricate).
+ABRicate was run with very low --minid and --mincov settings, as we previously had experienced missing hits (from split genes or low homology sequences).
+```
+abricate --db abricate_tvs --minid 40 --mincov 25 --threads 3 <contigs.fasta> > out.tab
+```
 
-### Plasmid replication 
+### Identification of plasmid replicon domain families.
+We wanted further information and evidence supporting whether circularised contigs were indeed plasmid sequences.
+Increased relative coverage compared to the main replicon/chromosome is indicative of plasmid sequence, as is circularisation.
+Sequences of the plasmid replication domain families, listed in Table 1 in [Jørgensen et al 2014](https://doi.org/10.1371/journal.pone.0087924) were downloaded from the [Pfam database](https://pfam.xfam.org/).
+Specifically the full-length sequences for all sequences in the full alignments were downloaded for:
+[PF01051](https://pfam.xfam.org/family/PF01051#tabview=tab3)
+[PF01402](https://pfam.xfam.org/family/PF01402#tabview=tab3)
+[PF01446](https://pfam.xfam.org/family/PF01446#tabview=tab3)
+[PF01719](https://pfam.xfam.org/family/PF01719#tabview=tab3)
+[PF01815](https://pfam.xfam.org/family/PF01815#tabview=tab3)
+[PF02486](https://pfam.xfam.org/family/PF02486#tabview=tab3)
+[PF03090](https://pfam.xfam.org/family/PF03090#tabview=tab3)
+[PF03428](https://pfam.xfam.org/family/PF03428#tabview=tab3)
+[PF04796](https://pfam.xfam.org/family/PF04796#tabview=tab3)
+[PF05732](https://pfam.xfam.org/family/PF05732#tabview=tab3)
+[PF06504](https://pfam.xfam.org/family/PF06504#tabview=tab3)
+[PF06970](https://pfam.xfam.org/family/PF06970#tabview=tab3)
+[PF07042](https://pfam.xfam.org/family/PF07042#tabview=tab3)
+[PF10134](https://pfam.xfam.org/family/PF10134#tabview=tab3)
+
+The following awk one liner was used to improve the sequence names for use with ABRicata.
+The example below is for PF03428_full_length_sequences.fasta
+```
+awk -F '>' '/^>/ { $1 = ">pfam~~~RP-C~~~" } { gsub (/[()]/,"",$2) } { gsub (" ","\t",$2) } { gsub ("\t"," PF03428.8 RP-C Replication protein C N-terminal domain 0 ",$2) }{ print $1 $2}' PF03428_full_length_sequences.fasta > PF03428_RP-C_abr.fasta
+```
+The individual *_abr.fasta files were concatenated, but the concatenated file contained duplicates.
+[fasta_unique](https://github.com/b-brankovics/fasta_tools/blob/master/bin/fasta_unique) by @b-brankovics was used to remove duplicates.
+The removed duplicates were writen to a .tab file for later review, and [Pfam_replicationdomain_unique.fasta]() used to build a protein sequence database with ABRicate.
+```
+cat *_abr.fasta > Pfam_replicondomains.fasta
+perl fasta_unique.perl Pfam_replicationdomain.fasta> Pfam_replicationdomain_unique.fasta 2>Pfam_replicationdomain_unique.tab
+```
+
 
 ###
 
