@@ -478,12 +478,12 @@ Max number of hit sequences		500
 The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 
 | Strain | Alternative desigatores | Bioproject accession |
-|--- | --- | --- |
-| CCUG4856T | ATCC25285, NCTC9343| [PRJNA525024](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA244943) |
+|--- | --- | --- :|
+| CCUG4856T | ATCC25285, NCTC9343| [PRJNA525024](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA525024) |
 | BF017 | O17, BF17, DCMOUH0017B| [PRJNA244943](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA244943) |
 | BFO18 | O18, BF18, DCMOUH0018B| [PRJNA244944](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA244944) |
 | S01 | DCMSKEJBY001B |[PRJNA244942](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA244942)|
-| BFO42| O42, BF42, DCMOUH0042B| [PRJNA253771](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254401)|
+| BFO42| O42, BF42, DCMOUH0042B| [PRJNA253771](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA253771)|
 | BFO67| O67, BF67, DCMOUH0067B| [PRJNA254401](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254401)|
 | BFO85| O85, BF85, DCMOUH0085B| [PRJNA254455](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254455)|
 
