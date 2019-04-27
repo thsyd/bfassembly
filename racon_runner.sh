@@ -1,6 +1,8 @@
 #!/bin/bash
 #One round of Racon with ONT reads.
 #after racon_runner https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/blob/master/racon_runner
+#this is written to run on a HPC that manages software through Environment Modules (http://modules.sourceforge.net/).
+#Other users may have to comment out the lines loading and unloading modules.
 
 if [ "$1" == "-h" ] ; then
     echo "Usage: racon_runner <assembly.fasta> <reads.fastq> <out.fasta>"
