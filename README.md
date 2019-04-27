@@ -478,7 +478,7 @@ Max number of hit sequences		500
 The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 
 | Strain | Alternative desigatores | Bioproject accession |
-|--- | --- |
+|--- | --- | --- |
 | CCUG4856T | ATCC25285, NCTC9343| PRJNA525024 |
 | BF017 | O17, BF17, DCMOUH0017B| PRJNA244942 |
 | BFO18 | O18, BF18, DCMOUH0018B| PRJNA244943 |
