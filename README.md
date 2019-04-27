@@ -454,7 +454,7 @@ awk -F '>' '/^>/ { $1 = ">pfam~~~RP-C~~~" } { gsub (/[()]/,"",$2) } { gsub (" ",
 ```
 The individual *_abr.fasta files were concatenated, but the concatenated file contained duplicates.
 [fasta_unique](https://github.com/b-brankovics/fasta_tools/blob/master/bin/fasta_unique) by @b-brankovics was used to remove duplicates.
-The removed duplicates were writen to a .tab file for later review, and [Pfam_replicationdomain_unique.fasta](--blob/master/Pfam_replicationdomain_unique.fasta) used to build a protein sequence database with ABRicate.
+The removed duplicates were writen to a .tab file for later review, and [Pfam_replicationdomain_unique.fasta](..blob/master/Pfam_replicationdomain_unique.fasta) used to build a protein sequence database with ABRicate.
 ```
 cat *_abr.fasta > Pfam_replicondomains.fasta
 perl fasta_unique.perl Pfam_replicationdomain.fasta> Pfam_replicationdomain_unique.fasta 2>Pfam_replicationdomain_unique.tab
