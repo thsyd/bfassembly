@@ -477,6 +477,16 @@ Max number of hit sequences		500
 ## Data repository links
 The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 
-The 141 variatrions of assemblies and polished assembleis of CCUG4658T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
+| Strain | Alternative desigatores | Bioproject accession |
+|--- | --- |
+| CCUG4856T | ATCC25285, NCTC9343| PRJNA525024 |
+| BF017 | O17, BF17, DCMOUH0017B| PRJNA244942 |
+| BFO18 | O18, BF18, DCMOUH0018B| PRJNA244943 |
+| S01 | DCMSKEJBY001B |PRJNA244944|
+| BFO42| O42, BF42, DCMOUH0042B| PRJNA254401|
+| BFO67| O67, BF67, DCMOUH0067B| BPRJNA253771|
+| BFO85| O85, BF85, DCMOUH0085B|PRJNA254455|
+
+The 141 variatrions of assemblies and polished assembleis of CCUG4856T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
 
 
