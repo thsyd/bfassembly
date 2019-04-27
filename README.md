@@ -189,7 +189,7 @@ spades.py 	--threads <number of cores> \
 
 ### Assembly polishing
 Assemblies were polished with [Nanopolish](https://nanopolish.readthedocs.io/en/latest/), [Racon](https://github.com/isovic/racon), and/or [Pilon](https://github.com/broadinstitute/pilon).
-[nanopolish_runner.sh](), [pilon_runner_nochange.sh](), [racon_runner.sh](), and [racon_illumina_runner.sh]() were heavily inspired by @nataliering 's [scripts](https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/).
+[nanopolish_runner.sh](../master/nanopolish_runner.sh), [../master/pilon_runner_nochange.sh](../master/pilon_runner_nochange.sh), [racon_runner.sh](../master/racon_runner.sh), and [../master/racon_illumina_runner.sh](racon_illumina_runner.sh) were heavily inspired by @nataliering 's [scripts](https://github.com/nataliering/Resolving-the-complex-Bordetella-pertussis-genome-using-barcoded-nanopore-sequencing/).
 
 Usage:
 Nanopolish_runner.sh
@@ -473,3 +473,10 @@ Match/mismatch	'Match 1, Mismatch -2'
 Gap costs		Existence 1, Extension 1
 Max number of hit sequences		500
 ```
+
+## Data repository links
+The NCBI/ENA Bioprojects contain sequence data and final assemblies:
+
+The 141 variatrions of assemblies and polished assembleis of CCUG4658T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
+
+
