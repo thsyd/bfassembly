@@ -489,4 +489,5 @@ The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 
 The 141 variatrions of assemblies and polished assembleis of CCUG4856T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
 
+The stages of genome assemblies for the complete circular assemblies of the seven isolates are available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2661704.svg)](https://doi.org/10.5281/zenodo.2661704)
 
