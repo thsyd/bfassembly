@@ -421,7 +421,7 @@ was made to the ABRicate script prior to use. See ABRicate [issue 83](https://gi
 Resistance genes were identified using the Resfinder, CARD and NCBI databases that come with ABRicate.
 Gene sequences of the putative multidrug efflux pumps BexA (GenBank: AB067769.1:3564..4895) and BexB (GenBank: AY375536.1:4599..5963) were downloaded from the NCBI Nucleotide database.
 The [ISFinder](https://isfinder.biotoul.fr/howto.php) Insertion Sequence database was downloaded from [here](https://github.com/thanhleviet/ISfinder-sequences) and duplicates removed (see [this issue](https://github.com/thanhleviet/ISfinder-sequences/issues/1).
-The above databases and sequences were collated into one ABRicate database (abricate_tvs) following the guide on ABRicates [github site](https://github.com/tseemann/abricate).
+The above databases and sequences were collated into one ABRicate database, [abricate_tvs](../master/abricate_tvs_sequences.fasta),  following the guide on ABRicates [github site](https://github.com/tseemann/abricate).
 ABRicate was run with very low --minid and --mincov settings, as we previously had experienced missing hits (from split genes or low homology sequences).
 ```
 abricate --db abricate_tvs --minid 40 --mincov 25 --threads 3 <contigs.fasta> > out.tab
@@ -482,6 +482,8 @@ The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 | BFO42| O42, BF42, DCMOUH0042B| [PRJNA253771](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA253771) |
 | BFO67| O67, BF67, DCMOUH0067B| [PRJNA254401](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254401) |
 | BFO85| O85, BF85, DCMOUH0085B| [PRJNA254455](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254455) |
+
+ONT data in fastq format, demultiplexed and with barcodes and adapters removed can be found here:
 
 The 141 variations of assemblies and polished assembleis of CCUG4856T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
 
