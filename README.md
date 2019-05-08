@@ -26,7 +26,7 @@ trim_galore/0.4.4
 trim_galore --paired --quality 10 <input 1> <input 2>
 ```
 
-#### Subsample to <100x read depth
+#### Random subsample to <100x read depth
 seqtk/1.0-r82-dirty pigz/2.3.4
 ```
 #set estimated genome length
@@ -210,7 +210,7 @@ racon_illumina_runner <assembly.fasta> <illuminareads1.fastq.gz> <reads2.fastq.g
 ```
 
 ### Evaluating assemblies
-Assemblies is .fasta format were collected in the same folder, and the following scripts run in that folder.
+Assemblies in .fasta format were collected in the same folder, and the following scripts run in that folder.
 This produced a number of output directories and .tsv files, with concatenated results for all .fasta files.
 These .tsv files could then be merged, creating the supplementary file XXX with evaluation results.
 
@@ -375,7 +375,7 @@ for F in */*.txt; do
 	#remove the first line of the prokka result.txt, convert space to tab, remove the colon
 	tail -n +2 $F | tr ' ' \\t | tr -d : >> tempfile.tsv
 	# we have to sort alfabetically as prokka does not output results to the txt in the same order for 
-	# each annotation run!
+	# each annotation run.
 	# sort the tempfile cut the second column and paste as a row (transpose), and add this to prokkaresults.tsv
 	sort tempfile.tsv | cut -f2 | paste -s >> prokkaresults.tsv
 done
@@ -415,7 +415,7 @@ rm -r genome_stats
 ```
 
 ### Identification of resistance genes and IS elements with [ABRicate](https://github.com/tseemann/abricate)
-ABRicate does not output the orientation of a hit in the results. To ascertain if an IS elements
+ABRicate does not output the orientation of a hit in the results. To ascertain if an IS element
 is oriented upstream and in the opposite strand of the resistance gene of interest, a small change
 was made to the ABRicate script prior to use. See ABRicate [issue 83](https://github.com/tseemann/abricate/issues/83).
 Resistance genes were identified using the Resfinder, CARD and NCBI databases that come with ABRicate.
@@ -459,10 +459,6 @@ The removed duplicates were writen to a .tab file for later review, and [Pfam_re
 cat *_abr.fasta > Pfam_replicondomains.fasta
 perl fasta_unique.perl Pfam_replicationdomain.fasta> Pfam_replicationdomain_unique.fasta 2>Pfam_replicationdomain_unique.tab
 ```
-
-
-###
-
 #### BLAST settings for ONT read mapping in CLC Genomics Workbench
 ```
 # Local BLAST of np reads to assembly
@@ -487,7 +483,7 @@ The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 | BFO67| O67, BF67, DCMOUH0067B| [PRJNA254401](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254401) |
 | BFO85| O85, BF85, DCMOUH0085B| [PRJNA254455](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254455) |
 
-The 141 variatrions of assemblies and polished assembleis of CCUG4856T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
+The 141 variations of assemblies and polished assembleis of CCUG4856T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
 
 The stages of genome assemblies for the complete circular assemblies of the seven isolates are available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2661704.svg)](https://doi.org/10.5281/zenodo.2661704)
 
