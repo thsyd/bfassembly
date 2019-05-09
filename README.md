@@ -483,7 +483,8 @@ The NCBI/ENA Bioprojects contain sequence data and final assemblies:
 | BFO67| O67, BF67, DCMOUH0067B| [PRJNA254401](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254401) |
 | BFO85| O85, BF85, DCMOUH0085B| [PRJNA254455](http://www.ncbi.nlm.nih.gov/bioproject/PRJNA254455) |
 
-ONT data in fastq format, demultiplexed and with barcodes and adapters removed can be found here:
+ONT data in fastq format, demultiplexed and with barcodes and adapters removed can be found here: 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2677927.svg)](https://doi.org/10.5281/zenodo.2677927)
 
 The 141 variations of assemblies and polished assembleis of CCUG4856T are available at [![DOI](https://www.zenodo.org/badge/DOI/10.5281/zenodo.2648546.svg)](https://doi.org/10.5281/zenodo.2648546)
 
